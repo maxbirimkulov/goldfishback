@@ -83,18 +83,17 @@ export const create =  async (req, res) => {
             price : req.body.price,
             priceSale : req.body.priceSale,
             images: req.body.images,
-            colors: req.body.colors,
-            sizes: req.body.sizes,
             category: req.body.category,
-            inStock: req.body.inStock,
-            gender: req.body.gender
+            time: req.body.time,
+            age: req.body.age,
+            playCount: req.body.playCount,
         })
-        const clothes = await doc.save()
-        res.json(clothes)
+        const cards = await doc.save()
+        res.json(cards)
     } catch (err) {
         console.log(err)
         res.status(500).json({
-            message: 'Не удалось создать статью'
+            message: 'Не удалось создать карточку'
         })
     }
 }

@@ -6,7 +6,7 @@ import mongoose from 'mongoose'
 import {
     registerValidation,
     loginValidation,
-    clothesCreateValidation, addOrderValidation
+    gameClientValidation, addOrderValidation
 } from './validations/validations.js'
 import checkAuth from "./utils/checkAuth.js";
 import {
@@ -104,8 +104,8 @@ index.post('/upload',  upload.single('image'), (req, res) => {
 index.get('/clothes', getAll )
 index.get('/clothes/:id', getOne )
 index.delete('/clothes/:id', remove )
-index.patch('/clothes/:id', clothesCreateValidation, handleValidatorErrors,   update )
-index.post('/clothes', clothesCreateValidation, handleValidatorErrors, create )
+// index.patch('/clothes/:id', gameClientValidation, handleValidatorErrors,   update )
+index.post('/cards', gameClientValidation, create )
 
 index.post('/orders', addOrderValidation, createOrder )
 

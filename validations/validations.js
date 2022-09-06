@@ -14,16 +14,15 @@ export const registerValidation = [
     body('favorites','Неверный список избранных').optional().isString(),
 ]
 
-export const clothesCreateValidation = [
+export const gameClientValidation = [
     body('title', 'Введите название товара').isLength({min: 3}).isString(),
     body('price', 'Введите цену товара').isNumeric(),
     body('priceSale', 'Введите аукционную цену товара').optional().isNumeric(),
-    body('sizes', 'Неверный формат размеров (укажите массив)').optional().isArray(),
-    body('inStock', 'Неверный формат размеров (укажите массив)').optional().isNumeric(),
-    body('colors', 'Неверный формат цвета').isLength({min: 3}).isString(),
-    body('images', 'Неверный формат картинок (укажите массив)').optional().isArray(),
+    body('images', 'Неверный формат картинок (укажите массив)').optional().isString(),
     body('category', 'Введите категорию').isString(),
-    body('gender', 'Введите пол').optional().isString()
+    body('time', 'Введите время').isString(),
+    body('age', 'Введите возраст').isNumeric(),
+    body('playCount', 'Введите количество игроков').isString(),
 ]
 
 export const addOrderValidation = [
