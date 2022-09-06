@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const ClothesSchema = new mongoose.Schema({
+const CardsSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -10,36 +10,31 @@ const ClothesSchema = new mongoose.Schema({
         required: true,
     },
     priceSale: Number,
-    colors : {
-        type: String,
-        required: true
-    },
-    sizes : {
-        type: Array,
-        default: [],
-    },
     category: {
         type: String,
         required: true
     },
-    gender: {
-      type: String,
-      default: "uni"
-    },
-    inStock: {
-        type: Number,
-        default: 0,
-    },
     images: {
-        type:Array,
-        default: [],
+        type:String,
     },
     viewsCount : {
         type: Number,
         default: 0
     },
+    time: {
+        type: String,
+        required: true
+    },
+    age: {
+        type: Number,
+        required: true
+    },
+    playCount: {
+        type: String,
+        required: true
+    }
 }, {
     timestamps: true,
 })
 
-export default  mongoose.model('Clothes', ClothesSchema)
+export default  mongoose.model('Cards', CardsSchema)

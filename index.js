@@ -18,7 +18,7 @@ import {
     handleOrders,
     getAllOrders, handleStatus
 } from './controllers/UserController.js'
-import {create, getAll,getOne, remove, update} from './controllers/ClothesController.js'
+import {create} from './controllers/ClothesController.js'
 import handleValidatorErrors from "./utils/handleValidatorErrors.js";
 import UserModel from "./models/User.js";
 import {createOrder} from "./controllers/OrderController.js";
@@ -101,9 +101,9 @@ index.post('/upload',  upload.single('image'), (req, res) => {
     })
 })
 
-index.get('/clothes', getAll )
-index.get('/clothes/:id', getOne )
-index.delete('/clothes/:id', remove )
+// index.get('/clothes', getAll )
+// index.get('/clothes/:id', getOne )
+// index.delete('/clothes/:id', remove )
 // index.patch('/clothes/:id', gameClientValidation, handleValidatorErrors,   update )
 index.post('/cards', gameClientValidation, create )
 
