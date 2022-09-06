@@ -1,81 +1,81 @@
 // import ClothesModel from '../models/Clothes.js'
 import CardsModel from '../models/Clothes.js'
 //
-// export const getAll = async (req, res) => {
-//     try {
-//          const clothes = await ClothesModel.find();
-//         res.json(clothes)
-//     } catch (err) {
-//         console.log(err)
-//         res.status(500).json({
-//             message: 'Не удалось получить все  статьи'
-//         })
-//     }
-// }
+export const getAll = async (req, res) => {
+    try {
+         const cards = await CardsModel.find();
+        res.json(cards)
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({
+            message: 'Не удалось получить все  статьи'
+        })
+    }
+}
 //
-// export const getOne = async (req, res) => {
-//     try {
-//         const clothesId = req.params.id
+export const getOne = async (req, res) => {
+    try {
+        const cardsId = req.params.id
+
+        CardsModel.findByIdAndUpdate({
+            _id: cardsId,
+        },{
+            $inc: {viewsCount: 1}
+        },{
+            returnDocument: 'after',
+        }, (err, doc) => {
+            if (err) {
+                console.log(err)
+               return  res.status(500).json({
+                    message: 'Не удалось получить статью'
+                })
+            }
+            if (!doc) {
+                return res.status(404).json({
+                    message: 'Статья не найдена'
+                })
+            }
+
+            res.json(doc)
+        })
+
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({
+            message: 'Не удалось получить все  статьи'
+        })
+    }
+}
 //
-//         ClothesModel.findByIdAndUpdate({
-//             _id: clothesId,
-//         },{
-//             $inc: {viewsCount: 1}
-//         },{
-//             returnDocument: 'after',
-//         }, (err, doc) => {
-//             if (err) {
-//                 console.log(err)
-//                return  res.status(500).json({
-//                     message: 'Не удалось получить статью'
-//                 })
-//             }
-//             if (!doc) {
-//                 return res.status(404).json({
-//                     message: 'Статья не найдена'
-//                 })
-//             }
-//
-//             res.json(doc)
-//         })
-//
-//     } catch (err) {
-//         console.log(err)
-//         res.status(500).json({
-//             message: 'Не удалось получить все  статьи'
-//         })
-//     }
-// }
-//
-// export const remove = async (req, res) => {
-//     try {
-//         const clothesId = req.params.id
-//         ClothesModel.findByIdAndDelete({
-//             _id: clothesId
-//         }, (err, doc) => {
-//             if (err){
-//                 console.log(err)
-//                 return  res.status(500).json({
-//                     message: 'Не удалось удалить вещь'
-//                 })
-//             }
-//
-//             if (!doc){
-//                 return res.status(404).json({
-//                     message: 'Вещь не найдена'
-//                 })
-//             }
-//
-//             res.json({success: true})
-//         })
-//
-//     } catch (err) {
-//         console.log(err)
-//         res.status(500).json({
-//             message: 'Не удалось удалить'
-//         })
-//     }
-// }
+export const remove = async (req, res) => {
+    try {
+        const cardsId = req.params.id
+        CardsModel.findByIdAndDelete({
+            _id: cardsId
+        }, (err, doc) => {
+            if (err){
+                console.log(err)
+                return  res.status(500).json({
+                    message: 'Не удалось удалить вещь'
+                })
+            }
+
+            if (!doc){
+                return res.status(404).json({
+                    message: 'Вещь не найдена'
+                })
+            }
+
+            res.json({success: true})
+        })
+
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({
+            message: 'Не удалось удалить'
+        })
+    }
+}
 //
 export const create =  async (req, res) => {
     try {
