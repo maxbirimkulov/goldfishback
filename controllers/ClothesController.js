@@ -3,26 +3,19 @@ import CardsModel from '../models/Clothes.js'
 //
 export const getAll = async (req, res) => {
     try {
-        let cards ;
+        let cards = await CardsModel.find({
+                category: new RegExp(req.query.category, 'i'),
+                price: {
+                    $gte : req.query.from ? req.query.from : 0,
+                    $lte : req.query.to ? req.query.to : 20000
+                }
+            });
+
         if (req.query.age) {
-            cards = await CardsModel.find({
-                category: new RegExp(req.query.category, 'i'),
-                age: {
-                    $in : req.query.age.split(',')
-                },
-                price: {
-                    $gte : req.query.from ? req.query.from : 0,
-                    $lte : req.query.to ? req.query.to : 20000
-                }
-            });
-        } else {
-            cards = await CardsModel.find({
-                category: new RegExp(req.query.category, 'i'),
-                price: {
-                    $gte : req.query.from ? req.query.from : 0,
-                    $lte : req.query.to ? req.query.to : 20000
-                }
-            });
+            let ages = req.query.age.split('-')
+            cards = cards.filter((item) => {
+                return +item.age >= +ages[0] && +item.age <= +ages[1]
+            })
         }
 
         if (req.query.players) {
