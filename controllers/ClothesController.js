@@ -25,6 +25,15 @@ export const getAll = async (req, res) => {
             })
         }
 
+
+        if (req.query.price) {
+            let prices = req.query.price
+            cards = cards.filter((item) => {
+                return +item.price >= +prices.$gte && +item.price.$gte <= prices.$lte
+            })
+        }
+
+
         if (req.query.sale){
             cards = cards.filter((item) => {
                 return item.priceSale
